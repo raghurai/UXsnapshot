@@ -1,5 +1,7 @@
 # UX Snapshot · Figma Project Snapshot skill for Claude
 
+![UX Snapshot: a Claude skill that turns a scattered Figma file into a one-page project snapshot for stakeholders](docs/intro.png)
+
 A Claude skill that turns a Figma file into a **one-page project snapshot** that any stakeholder can read in two minutes, without opening Figma or sitting through a walkthrough.
 
 Point Claude at a Figma link (or a few screenshots) and you get back a clean, shareable page that explains **why** the project exists, **who** it's for, **what** is being built, and **how** people will use it.
@@ -107,6 +109,7 @@ references/section-guide.md      Weak vs strong examples for every section
 assets/snapshot-template.html    The one-page HTML output (light/dark, print-ready)
 scripts/parse_figma_url.py       Turns a Figma URL into file key + node id (design, FigJam, branches)
 figma-project-snapshot.skill     Packaged skill, ready to install
+docs/intro.svg, intro.png        The intro image above (SVG source + PNG)
 ```
 
 ## Roadmap

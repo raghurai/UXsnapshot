@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640" font-family="Inter, -apple-system, 'Segoe UI', Roboto, 'DejaVu Sans', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0e1320"/>
+      <stop offset="1" stop-color="#161d33"/>
+    </linearGradient>
+    <linearGradient id="arrow" x1="0" x2="1">
+      <stop offset="0" stop-color="#7aa2ff" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#7aa2ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#ffffff" fill-opacity="0.07"/>
+    </pattern>
+  </defs>
+
+  <rect width="1280" height="640" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="60" y="78" fill="#ffffff" font-size="40" font-weight="700" letter-spacing="-0.5">UX Snapshot</text>
+  <text x="60" y="112" fill="#9aa6c2" font-size="18">A Claude skill that turns a Figma file into a one-page project snapshot for stakeholders</text>
+
+  <!-- LEFT: messy design file -->
+  <g>
+    <rect x="60" y="150" width="420" height="430" rx="16" fill="#1a2135" stroke="#2a3350"/>
+    <rect x="60" y="150" width="420" height="430" rx="16" fill="url(#dots)"/>
+    <text x="84" y="182" fill="#9aa6c2" font-size="13" font-weight="600" letter-spacing="1.2">DESIGN FILE</text>
+
+    <!-- section label -->
+    <text x="84" y="216" fill="#c9b6ff" font-size="12" font-weight="600">Current state</text>
+    <g transform="rotate(-3 150 270)">
+      <rect x="84" y="226" width="140" height="96" rx="8" fill="#252e48" stroke="#39436a"/>
+      <rect x="96" y="240" width="80" height="8" rx="4" fill="#4b5680"/>
+      <rect x="96" y="256" width="116" height="6" rx="3" fill="#39436a"/>
+      <rect x="96" y="268" width="100" height="6" rx="3" fill="#39436a"/>
+      <rect x="96" y="290" width="50" height="18" rx="5" fill="#39436a"/>
+    </g>
+    <text x="84" y="346" fill="#6f7a99" font-size="11" font-family="'DejaVu Sans Mono', monospace">Frame 2187</text>
+
+    <text x="260" y="216" fill="#c9b6ff" font-size="12" font-weight="600">Final</text>
+    <g transform="rotate(2 330 280)">
+      <rect x="258" y="226" width="196" height="120" rx="8" fill="#252e48" stroke="#39436a"/>
+      <rect x="270" y="240" width="100" height="8" rx="4" fill="#4b5680"/>
+      <rect x="270" y="258" width="172" height="12" rx="3" fill="#2f385a"/>
+      <rect x="270" y="274" width="172" height="12" rx="3" fill="#2f385a"/>
+      <rect x="270" y="290" width="172" height="12" rx="3" fill="#2f385a"/>
+      <rect x="388" y="318" width="54" height="18" rx="5" fill="#5a7bd6"/>
+    </g>
+    <text x="260" y="370" fill="#6f7a99" font-size="11" font-family="'DejaVu Sans Mono', monospace">Upload_v3_final_FINAL</text>
+
+    <!-- sticky notes -->
+    <g transform="rotate(-5 140 440)">
+      <rect x="92" y="396" width="118" height="84" rx="4" fill="#f5d36b"/>
+      <rect x="104" y="412" width="88" height="6" rx="3" fill="#b8962f"/>
+      <rect x="104" y="426" width="70" height="6" rx="3" fill="#b8962f"/>
+      <rect x="104" y="440" width="80" height="6" rx="3" fill="#b8962f"/>
+      <text x="104" y="468" fill="#7a5e10" font-size="11" font-weight="700">TBD?</text>
+    </g>
+    <g transform="rotate(4 300 450)">
+      <rect x="240" y="404" width="104" height="76" rx="4" fill="#9fe3c0"/>
+      <rect x="252" y="420" width="76" height="6" rx="3" fill="#4f9e78"/>
+      <rect x="252" y="434" width="60" height="6" rx="3" fill="#4f9e78"/>
+      <text x="252" y="464" fill="#2d6b4c" font-size="11" font-weight="700">approver?</text>
+    </g>
+
+    <text x="360" y="420" fill="#c9b6ff" font-size="12" font-weight="600">Explorations</text>
+    <rect x="360" y="430" width="44" height="64" rx="6" fill="#252e48" stroke="#39436a" stroke-dasharray="4 3"/>
+    <rect x="410" y="430" width="44" height="64" rx="6" fill="#252e48" stroke="#39436a" stroke-dasharray="4 3"/>
+
+    <!-- prototype link -->
+    <path d="M224 300 C 240 300, 244 290, 258 288" fill="none" stroke="#7aa2ff" stroke-width="2" stroke-dasharray="3 3"/>
+
+    <text x="84" y="548" fill="#9aa6c2" font-size="14">Context scattered across frames,</text>
+    <text x="84" y="566" fill="#9aa6c2" font-size="14">stickies and someone's head</text>
+  </g>
+
+  <!-- MIDDLE: arrow -->
+  <g>
+    <rect x="502" y="338" width="132" height="6" rx="3" fill="url(#arrow)"/>
+    <path d="M630 328 L650 341 L630 354 Z" fill="#7aa2ff"/>
+    <rect x="504" y="284" width="128" height="34" rx="17" fill="#7aa2ff" fill-opacity="0.14" stroke="#7aa2ff" stroke-opacity="0.5"/>
+    <text x="568" y="306" fill="#cfdcff" font-size="14" font-weight="600" text-anchor="middle">Claude skill</text>
+    <text x="568" y="374" fill="#7f8aa8" font-size="12" text-anchor="middle">reads · sorts · writes</text>
+  </g>
+
+  <!-- RIGHT: snapshot page -->
+  <g filter="url(#shadow)">
+    <rect x="676" y="140" width="544" height="460" rx="16" fill="#ffffff"/>
+  </g>
+  <g>
+    <text x="704" y="176" fill="#2563eb" font-size="11" font-weight="700" letter-spacing="1.2">PROJECT SNAPSHOT</text>
+    <text x="704" y="204" fill="#15171a" font-size="22" font-weight="700">Partner document center</text>
+    <rect x="1086" y="186" width="106" height="24" rx="12" fill="#e3f6ec"/>
+    <text x="1139" y="203" fill="#11744a" font-size="12" font-weight="700" text-anchor="middle">Ready for dev</text>
+
+    <!-- TL;DR -->
+    <rect x="704" y="222" width="488" height="58" rx="10" fill="#e8efff"/>
+    <text x="720" y="246" fill="#15171a" font-size="13">For partners, a self-serve place to download the right</text>
+    <text x="720" y="265" fill="#15171a" font-size="13">template and upload it back, so documents arrive complete.</text>
+
+    <!-- Why / Who cards -->
+    <rect x="704" y="294" width="238" height="86" rx="10" fill="#f6f7f9" stroke="#e3e6ea"/>
+    <text x="718" y="316" fill="#5d6470" font-size="11" font-weight="700" letter-spacing="0.8">GOAL · WHY</text>
+    <rect x="718" y="330" width="200" height="7" rx="3.5" fill="#cfd5de"/>
+    <rect x="718" y="344" width="170" height="7" rx="3.5" fill="#cfd5de"/>
+    <rect x="718" y="358" width="120" height="7" rx="3.5" fill="#cfd5de"/>
+
+    <rect x="954" y="294" width="238" height="86" rx="10" fill="#f6f7f9" stroke="#e3e6ea"/>
+    <text x="968" y="316" fill="#5d6470" font-size="11" font-weight="700" letter-spacing="0.8">USERS · WHO</text>
+    <rect x="968" y="330" width="130" height="7" rx="3.5" fill="#cfd5de"/>
+    <rect x="968" y="346" width="96" height="7" rx="3.5" fill="#cfd5de"/>
+    <rect x="1072" y="341" width="58" height="17" rx="8.5" fill="#fff3dc"/>
+    <text x="1101" y="353" fill="#9a5b00" font-size="10" font-weight="700" text-anchor="middle">Confirm</text>
+    <rect x="968" y="362" width="110" height="7" rx="3.5" fill="#cfd5de"/>
+
+    <!-- Flow -->
+    <text x="704" y="408" fill="#5d6470" font-size="11" font-weight="700" letter-spacing="0.8">USER FLOW · HOW</text>
+    <line x1="724" y1="434" x2="1172" y2="434" stroke="#dbe3f5" stroke-width="2"/>
+    <g font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">
+      <circle cx="724" cy="434" r="12" fill="#2563eb"/><text x="724" y="438">1</text>
+      <circle cx="814" cy="434" r="12" fill="#2563eb"/><text x="814" y="438">2</text>
+      <circle cx="904" cy="434" r="12" fill="#2563eb"/><text x="904" y="438">3</text>
+      <circle cx="994" cy="434" r="12" fill="#2563eb"/><text x="994" y="438">4</text>
+      <circle cx="1084" cy="434" r="12" fill="#2563eb"/><text x="1084" y="438">5</text>
+      <circle cx="1172" cy="434" r="12" fill="#d98a00"/><text x="1172" y="438">!</text>
+    </g>
+    <g font-size="10" fill="#5d6470" text-anchor="middle">
+      <text x="724" y="462">Open</text><text x="814" y="462">Download</text><text x="904" y="462">Fill in</text>
+      <text x="994" y="462">Upload</text><text x="1084" y="462">In review</text><text x="1172" y="462">Re-upload</text>
+    </g>
+
+    <!-- Journey -->
+    <text x="704" y="496" fill="#5d6470" font-size="11" font-weight="700" letter-spacing="0.8">CURRENT STATE → NORTH STAR</text>
+    <rect x="704" y="508" width="154" height="66" rx="10" fill="#f6f7f9" stroke="#e3e6ea"/>
+    <text x="718" y="530" fill="#5d6470" font-size="10" font-weight="700" letter-spacing="0.8">TODAY</text>
+    <rect x="718" y="542" width="116" height="7" rx="3.5" fill="#cfd5de"/>
+    <rect x="718" y="556" width="84" height="7" rx="3.5" fill="#cfd5de"/>
+
+    <rect x="871" y="508" width="154" height="66" rx="10" fill="#f6f7f9" stroke="#e3e6ea"/>
+    <text x="885" y="530" fill="#2563eb" font-size="10" font-weight="700" letter-spacing="0.8">THIS RELEASE</text>
+    <rect x="885" y="542" width="116" height="7" rx="3.5" fill="#cfd5de"/>
+    <rect x="885" y="556" width="92" height="7" rx="3.5" fill="#cfd5de"/>
+
+    <rect x="1038" y="508" width="154" height="66" rx="10" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="1052" y="530" fill="#2563eb" font-size="10" font-weight="700" letter-spacing="0.8">NORTH STAR ★</text>
+    <rect x="1052" y="542" width="116" height="7" rx="3.5" fill="#cfd5de"/>
+    <rect x="1052" y="556" width="70" height="7" rx="3.5" fill="#cfd5de"/>
+  </g>
+
+  <!-- Footer formula -->
+  <text x="60" y="620" fill="#9aa6c2" font-size="15">Solution = <tspan fill="#ffffff" font-weight="700">Why</tspan> + <tspan fill="#ffffff" font-weight="700">Who</tspan> + <tspan fill="#ffffff" font-weight="700">What</tspan> + <tspan fill="#ffffff" font-weight="700">How</tspan></text>
+  <text x="1220" y="620" fill="#6f7a99" font-size="13" text-anchor="end">Observed · Confirm · Needs input. No made-up numbers.</text>
+</svg>
