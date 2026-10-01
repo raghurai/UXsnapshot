@@ -4,7 +4,7 @@
 
 A Claude skill that turns a Figma file into a **one-page project snapshot** that any stakeholder can read in two minutes, without opening Figma or sitting through a walkthrough.
 
-Point Claude at a Figma link (or a few screenshots) and you get back a clean, shareable page that explains **why** the project exists, **who** it's for, **what** is being built, and **how** people will use it.
+Point Claude at a Figma link and it adds a **📋 Project Snapshot page right inside your Figma file**, placed first so it works as the file's cover. It explains **why** the project exists, **who** it's for, **what** is being built, and **how** people will use it.
 
 ---
 
@@ -14,7 +14,7 @@ Point Claude at a Figma link (or a few screenshots) and you get back a clean, sh
 
 > "Make a project snapshot from this Figma file: `<link>`"
 
-**2. Claude reads the file and fills in the snapshot.** It goes through your pages, frames, sticky notes, annotations and FigJam boards, and fills every section it can: goal, problem, users, type of experience, user flow, and the path from current state to north star.
+**2. Claude reads the file and creates the snapshot page.** It goes through your pages, frames, sticky notes, annotations and FigJam boards, fills every section it can (goal, problem, users, type of experience, user flow, current state to north star), and adds a **📋 Project Snapshot** page at the top of your file. Each user-flow step links to its screen on the canvas.
 
 **3. You fill in the gaps.** Anything the file doesn't show is flagged instead of guessed:
 
@@ -25,7 +25,7 @@ Claude lists them as one numbered checklist, so you can answer everything in a s
 
 > "1 yes, 2 no admins in v1, 3 about 40 a month"
 
-Claude updates the same snapshot, ripples any changes through related sections, and shows what's still open. Anything you skip stays as an open question, never quietly filled in. Repeat until nothing's left, and it's ready to share.
+Claude rebuilds the same snapshot page in Figma, ripples any changes through related sections, and shows what's still open. Anything you skip stays as an open question, never quietly filled in. Repeat until nothing's left, and it's ready to share.
 
 **Tip:** Want fewer gaps? Paste your PRD, brief or meeting notes along with the Figma link. You can also skip the file entirely and just describe the project. Claude will build the snapshot from what you tell it.
 
@@ -70,14 +70,14 @@ flowchart LR
   C --> D[Sort frames<br/>current state · final · explorations]
   D --> E[Fill the framework]
   E --> F[Label confidence<br/>observed · Confirm · Needs input]
-  F --> G[One-page HTML snapshot]
+  F --> G[📋 Project Snapshot page<br/>first page of the Figma file]
 ```
 
 1. **Reads the structure first.** Claude maps pages, sections and frame names before taking any screenshots, so it finds the narrative instead of drowning in screens.
 2. **Goes where designers leave context.** Cover pages, section labels, sticky notes, annotations, FigJam boards and prototype connections usually explain more than the UI does.
 3. **Sorts frames by purpose.** *Current state* frames feed the Problem, *final* frames feed the User flow, *explorations* and *v2* frames feed the North star.
 4. **Writes for non-designers.** Plain language, real screen names ("the upload screen", not "Frame 2187"), no jargon.
-5. **Outputs one page.** A self-contained HTML file that supports light and dark mode, prints cleanly, and is easy to share as a link.
+5. **Builds the page in Figma.** A "📋 Project Snapshot" page is added as the first page of the file, so it's the first thing anyone sees. Flow steps link to their screens, open items sit in a *Fill the gaps* box, and re-running replaces the page instead of duplicating it. No edit access? It falls back to a one-page HTML snapshot (light/dark, print-ready).
 
 ## It doesn't make things up
 
@@ -116,7 +116,7 @@ Once installed, just ask in plain language:
 - "I need a one-pager on this project before Thursday's review"
 - "Turn these screenshots into a project overview" *(attach images)*
 
-It works best with the **Figma connector** enabled in Claude, since that gives it layer names, annotations and FigJam boards. Without it, upload screenshots and expect a few more *Needs input* items. Pasting a PRD or brief alongside the link improves the Goal and Problem sections a lot.
+It needs the **Figma connector** enabled in Claude with **edit access** to the file to create the snapshot page. With view-only access it reads the file and gives you an HTML snapshot instead. Without it, upload screenshots and expect a few more *Needs input* items. Pasting a PRD or brief alongside the link improves the Goal and Problem sections a lot.
 
 ## Install
 
@@ -129,7 +129,8 @@ It works best with the **Figma connector** enabled in Claude, since that gives i
 SKILL.md                         The workflow and rules Claude follows
 references/figma-extraction.md   How to read a Figma file for context, and what UI signals mean
 references/section-guide.md      Weak vs strong examples for every section
-assets/snapshot-template.html    The one-page HTML output (light/dark, print-ready)
+assets/figma-snapshot-builder.js Builds the 📋 Project Snapshot page inside the Figma file
+assets/snapshot-template.html    HTML fallback (light/dark, print-ready)
 scripts/parse_figma_url.py       Turns a Figma URL into file key + node id (design, FigJam, branches)
 figma-project-snapshot.skill     Packaged skill, ready to install
 docs/intro.svg, intro.png        The intro image above (SVG source + PNG)

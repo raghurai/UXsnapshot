@@ -1,11 +1,11 @@
 ---
 name: figma-project-snapshot
-description: Turn a Figma file, frame, or page (link or screenshots) into a one-page project snapshot that lets any stakeholder understand a design project in two minutes — the why, who, what and how, the problem, users, user flow, and the path from current state to north star. Claude fills in everything the file supports, flags the rest, and the user fills the gaps in a follow-up reply. Use this whenever someone shares a Figma link or design screenshots, or describes a design project, and wants a project summary, overview, brief, one-pager, status update, stakeholder update, handoff summary, kickoff recap, or "help people understand this project" — even if they don't say the word "snapshot". Also use it when the user answers Confirm / Needs input items or asks to update an existing snapshot.
+description: Turn a Figma file, frame, or page (link or screenshots) into a project snapshot page created right inside the Figma file as its cover page that lets any stakeholder understand a design project in two minutes — the why, who, what and how, the problem, users, user flow, and the path from current state to north star. Claude fills in everything the file supports, flags the rest, and the user fills the gaps in a follow-up reply. Use this whenever someone shares a Figma link or design screenshots, or describes a design project, and wants a project summary, overview, brief, one-pager, status update, stakeholder update, handoff summary, kickoff recap, or "help people understand this project" — even if they don't say the word "snapshot". Also use it when the user answers Confirm / Needs input items or asks to update an existing snapshot.
 ---
 
 # Figma Project Snapshot
 
-Produce a single-page snapshot of a design project from its Figma file, so a PM, engineer, exec or new teammate can understand the project without opening Figma or sitting through a walkthrough.
+Produce a one-page snapshot of a design project from its Figma file, and add it to that same file as a **"📋 Project Snapshot" page placed first**, so anyone who opens the file (PM, engineer, exec, new teammate) understands the project before they look at a single screen.
 
 The snapshot follows one framework, read top to bottom as a journey from **Current state → North star**:
 
@@ -64,11 +64,23 @@ Section guidance (see `references/section-guide.md` for examples of strong and w
 
 Use plain language: "the upload screen", not "Frame 2187 / Upload_v3_final". Short sentences, active voice, no design jargon without a gloss. Someone who has never seen the project should finish reading knowing what it is, why it matters, and what's being asked of them.
 
-### 5. Produce the output
+### 5. Produce the output: a snapshot page in the Figma file
 
-Default to a single self-contained HTML page built from `assets/snapshot-template.html`. Replace every `{{PLACEHOLDER}}`, delete blocks that don't apply (for example the screens strip if there are no screenshots), and keep the section order. Embed screenshots as data URIs only if they're small; otherwise list screen names with the Figma link. Keep the page to roughly one printed page — trim words before dropping sections.
+**Default: build it in Figma.** When the user gave a Figma link and a Figma write tool is available (for example `use_figma`, which runs Figma Plugin API code):
 
-Use another format when asked: Markdown (same headings, same order), a slide, or a doc. If the environment has a document or artifact publishing tool, use it so the snapshot is shareable as a link.
+1. Load the Figma connector's own usage guidance first if it offers one (e.g. a `figma-use` skill or resource). It lists API gotchas that otherwise cause hard-to-debug failures.
+2. Copy `assets/figma-snapshot-builder.js`, replace the `DATA` object with the snapshot content, and run it against the file key. Leave the rest of the script alone; it handles layout, fonts, colors and tags.
+   - Put each flow step's frame id in `screenId` so the step links straight to that screen on the canvas.
+   - Put every open Confirm / Needs input item in `gaps`, numbered the same way as the checklist in step 6. The page shows them in a "Fill the gaps" box.
+   - Set `confirm: true` on inferred users and `northStarConfirm: true` on an inferred north star.
+3. The script creates a page named "📋 Project Snapshot", moves it to the top of the page list so it acts as the file's cover / read-me, and builds one "Project Snapshot" frame on it. Re-running it replaces that frame, so there is only ever one version.
+4. Give the user a direct link: `https://www.figma.com/design/<fileKey>/?node-id=<frameId with ":" replaced by "-">`.
+
+If the write fails (no edit access, view-only link, connector without write tools), say so in one line and fall back to the HTML version below. Don't silently skip the Figma page.
+
+**Fallback or on request: HTML.** Build a single self-contained page from `assets/snapshot-template.html`. Replace every `{{PLACEHOLDER}}`, delete blocks that don't apply, keep the section order, and keep it to about one printed page. Use Markdown, a slide or a doc instead if the user asks; if the environment can publish pages or docs, publish so it's shareable as a link.
+
+Either way, trim words before dropping sections.
 
 ### 6. Hand it back with a gap checklist
 
@@ -100,7 +112,7 @@ When the user replies to the checklist, or tells you something new about the pro
    - *"Don't know" / "skip"* → keep it as an open question in the Decisions, open questions & risks section rather than leaving a Needs input box in the body.
    - *New information the user volunteers* → add it to the right section as observed.
 3. **Rewrite the TL;DR** if any answer changed the who, what, why or how.
-4. **Republish the same snapshot** (same file or same artifact link) so the user keeps one shareable version, not a new copy each round.
+4. **Update the same snapshot.** In Figma, re-run the builder with the updated `DATA` (answered items removed from `gaps`); it rebuilds the frame on the existing "📋 Project Snapshot" page. For HTML, update the same file or link. The user always has one version, not a new copy each round. When `gaps` is empty, the "Fill the gaps" box disappears from the page.
 5. **Report back briefly**: what changed, and a new checklist of anything still open, keeping the original numbers for unchanged items so the user isn't confused. When nothing is open, say it's ready to share.
 
 Never resolve an item yourself because the user didn't mention it. Unanswered items stay open.
