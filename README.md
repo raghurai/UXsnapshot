@@ -21,11 +21,11 @@ Point Claude at a Figma link (or a few screenshots) and you get back a clean, sh
 - **Confirm**: Claude's best guess from the designs. Reply "yes" or correct it.
 - **Needs input**: a specific question Claude couldn't answer from the file, like *"How many resubmissions happen per month today?"*
 
-Answer them in one reply, for example:
+Claude lists them as one numbered checklist, so you can answer everything in a single reply, by number or in your own words:
 
-> "Reviewer role is correct. Admins don't exist in v1. Resubmissions are about 40 a month."
+> "1 yes, 2 no admins in v1, 3 about 40 a month"
 
-Claude updates the snapshot, and it's ready to share.
+Claude updates the same snapshot, ripples any changes through related sections, and shows what's still open. Anything you skip stays as an open question, never quietly filled in. Repeat until nothing's left, and it's ready to share.
 
 **Tip:** Want fewer gaps? Paste your PRD, brief or meeting notes along with the Figma link. You can also skip the file entirely and just describe the project. Claude will build the snapshot from what you tell it.
 

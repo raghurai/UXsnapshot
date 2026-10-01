@@ -1,6 +1,6 @@
 ---
 name: figma-project-snapshot
-description: Turn a Figma file, frame, or page (link or screenshots) into a one-page project snapshot that lets any stakeholder understand a design project in two minutes — the why, who, what and how, the problem, users, user flow, and the path from current state to north star. Use this whenever someone shares a Figma link or design screenshots and wants a project summary, overview, brief, one-pager, status update, stakeholder update, handoff summary, kickoff recap, or "help people understand this project" — even if they don't say the word "snapshot".
+description: Turn a Figma file, frame, or page (link or screenshots) into a one-page project snapshot that lets any stakeholder understand a design project in two minutes — the why, who, what and how, the problem, users, user flow, and the path from current state to north star. Claude fills in everything the file supports, flags the rest, and the user fills the gaps in a follow-up reply. Use this whenever someone shares a Figma link or design screenshots, or describes a design project, and wants a project summary, overview, brief, one-pager, status update, stakeholder update, handoff summary, kickoff recap, or "help people understand this project" — even if they don't say the word "snapshot". Also use it when the user answers Confirm / Needs input items or asks to update an existing snapshot.
 ---
 
 # Figma Project Snapshot
@@ -33,6 +33,7 @@ Accept any of these:
 - **Figma link (preferred).** Run `python scripts/parse_figma_url.py "<url>"` to pull out the file key and node id. If no node id is in the link, ask which page or section to cover only if the file is clearly large; otherwise start at the file root.
 - **Screenshots or exported frames.** Work from the images directly. Tell the user once that a link would give richer results (layer names, annotations, comments).
 - **Both, plus notes.** Treat a PRD, Slack thread or brief the user pastes as a primary source. It usually fills Goal and Problem better than the canvas can.
+- **No file, just a description.** If the user describes the project in words, build the snapshot from that. Their statements count as observed; everything else follows the same Confirm / Needs input rules. Offer once that a Figma link would fill the User flow and screens.
 
 ### 2. Extract what's in the file
 
@@ -69,6 +70,37 @@ Default to a single self-contained HTML page built from `assets/snapshot-templat
 
 Use another format when asked: Markdown (same headings, same order), a slide, or a doc. If the environment has a document or artifact publishing tool, use it so the snapshot is shareable as a link.
 
-### 6. Hand it back
+### 6. Hand it back with a gap checklist
 
-Below the snapshot, give the user a short list of every *Confirm* and *Needs input* item so they can resolve them in one pass before sharing. Offer to update the snapshot once they answer.
+Below the snapshot, list every open item as one numbered checklist the user can answer in a single reply. Confirm items first, then Needs input:
+
+```
+Fill the gaps (reply with the numbers, e.g. "1 yes, 2 no admins in v1, 3 about 40 a month"):
+
+Confirm
+1. Users: there's an internal reviewer who approves uploads.
+2. Users: an admin role publishes templates.
+
+Needs input
+3. Problem: how many resubmissions happen per month today?
+4. North star: is in-browser form filling the long-term vision?
+```
+
+Number items continuously across both groups so short replies like "3 about 40" map cleanly. If there are no open items, say the snapshot is ready to share.
+
+## Filling the gaps
+
+When the user replies to the checklist, or tells you something new about the project at any point, update the snapshot rather than starting over.
+
+1. **Map each answer to its item.** Accept any form: numbers ("1 yes"), the item's wording ("reviewer is right"), or free text ("there's no admin in v1"). If an answer is ambiguous, apply the rest and ask about that one item only.
+2. **Apply the answer.**
+   - *Confirmed* → remove the Confirm tag; the statement is now observed.
+   - *Corrected* → replace the statement with the user's version and remove the tag. Check whether the correction changes other sections (removing a role can remove a flow step or a decision) and update those too.
+   - *Answered Needs input* → replace the question with the answer, in plain stakeholder language.
+   - *"Don't know" / "skip"* → keep it as an open question in the Decisions, open questions & risks section rather than leaving a Needs input box in the body.
+   - *New information the user volunteers* → add it to the right section as observed.
+3. **Rewrite the TL;DR** if any answer changed the who, what, why or how.
+4. **Republish the same snapshot** (same file or same artifact link) so the user keeps one shareable version, not a new copy each round.
+5. **Report back briefly**: what changed, and a new checklist of anything still open, keeping the original numbers for unchanged items so the user isn't confused. When nothing is open, say it's ready to share.
+
+Never resolve an item yourself because the user didn't mention it. Unanswered items stay open.
