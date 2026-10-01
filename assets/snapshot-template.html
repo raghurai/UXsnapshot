@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{PROJECT_NAME}} · Project snapshot</title>
+<!--
+  Fill every {{PLACEHOLDER}}. Delete blocks marked OPTIONAL if unused.
+  Tags: <span class="tag confirm">Confirm</span> for inferred items,
+        <span class="needs">Needs input: …</span> for gaps.
+  Keep section order. Aim for about one printed page.
+-->
+<style>
+  :root {
+    --bg: #ffffff; --surface: #f6f7f9; --text: #15171a; --muted: #5d6470;
+    --line: #e3e6ea; --accent: #2563eb; --accent-soft: #e8efff;
+    --warn: #9a5b00; --warn-soft: #fff3dc; --ok: #11744a; --ok-soft: #e3f6ec;
+    --radius: 10px;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #111316; --surface: #1a1d22; --text: #eceef1; --muted: #9aa2ad;
+      --line: #2a2f36; --accent: #7aa2ff; --accent-soft: #1c2640;
+      --warn: #f5b552; --warn-soft: #3a2b12; --ok: #5fd39a; --ok-soft: #12301f;
+    }
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.5; font-size: 15px; }
+  main { max-width: 880px; margin: 0 auto; padding: 40px 24px 64px; }
+  header { border-bottom: 1px solid var(--line); padding-bottom: 20px; margin-bottom: 24px; }
+  .eyebrow { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  h1 { font-size: 30px; line-height: 1.2; margin: 6px 0 12px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 13px; color: var(--muted); }
+  .meta a { color: var(--accent); }
+  .status { display: inline-block; padding: 2px 10px; border-radius: 99px; background: var(--ok-soft); color: var(--ok); font-weight: 600; }
+  .tldr { background: var(--accent-soft); border-radius: var(--radius); padding: 18px 20px; font-size: 17px; margin-bottom: 28px; }
+  .formula { font-size: 12px; color: var(--muted); margin-top: 8px; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 10px; }
+  section { margin-bottom: 28px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; }
+  .card p { margin: 0; }
+  ul, ol { margin: 0; padding-left: 20px; }
+  li + li { margin-top: 6px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 8px; border-radius: 99px; vertical-align: middle; }
+  .tag.confirm { background: var(--warn-soft); color: var(--warn); }
+  .needs { display: block; margin-top: 8px; font-size: 13px; color: var(--warn); background: var(--warn-soft); border-radius: 6px; padding: 6px 10px; }
+  .journey { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; position: relative; }
+  .stop { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; }
+  .stop .label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .stop.now .label { color: var(--accent); }
+  .stop.star { border-color: var(--accent); }
+  .stop.star .label { color: var(--accent); }
+  @media (max-width: 640px) { .journey { grid-template-columns: 1fr; } }
+  .flow { counter-reset: step; list-style: none; padding: 0; }
+  .flow li { counter-increment: step; position: relative; padding-left: 40px; min-height: 28px; }
+  .flow li::before { content: counter(step); position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 13px; font-weight: 700; display: grid; place-items: center; }
+  .flow .screen { font-size: 12px; color: var(--muted); }
+  .flow li.edge::before { background: var(--warn); }
+  .screens { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 6px; }
+  .screens figure { margin: 0; flex: 0 0 220px; }
+  .screens img { width: 100%; border-radius: 8px; border: 1px solid var(--line); display: block; }
+  .screens figcaption { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  footer { border-top: 1px solid var(--line); padding-top: 14px; font-size: 12px; color: var(--muted); }
+  @media print { main { padding: 0; } .tldr, .card, .stop { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <div class="eyebrow">Project snapshot</div>
+  <h1>{{PROJECT_NAME}}</h1>
+  <div class="meta">
+    <span class="status">{{STATUS e.g. In design / Ready for dev}}</span>
+    <span>Owner: {{OWNER}}</span>
+    <span>Updated: {{DATE}}</span>
+    <a href="{{FIGMA_URL}}">Open in Figma ↗</a>
+  </div>
+</header>
+
+<div class="tldr">
+  {{TLDR — For [who], we're [what] so that [why], by [how].}}
+  <div class="formula">Solution = Why + Who + What + How</div>
+</div>
+
+<section class="grid">
+  <div class="card">
+    <h2>Goal · Why</h2>
+    <p>{{GOAL — an outcome, not a feature}}</p>
+  </div>
+  <div class="card">
+    <h2>Problem · Why</h2>
+    <p>{{PROBLEM — current pain, who feels it, evidence}}</p>
+    <!-- <span class="needs">Needs input: …</span> -->
+  </div>
+</section>
+
+<section class="grid">
+  <div class="card">
+    <h2>Users · Who</h2>
+    <ul>
+      <li><strong>{{ROLE}}</strong>: {{WHAT THEY NEED TO GET DONE}}</li>
+      <!-- repeat; add <span class="tag confirm">Confirm</span> to inferred roles -->
+    </ul>
+  </div>
+  <div class="card">
+    <h2>Type of experience · What</h2>
+    <p>{{CLASSIFICATION — e.g. Net-new feature in the partner portal}}</p>
+    <p class="screen" style="margin-top:6px;color:var(--muted);font-size:13px">{{PLATFORM}} · Pattern: {{INTERACTION PATTERN}}</p>
+  </div>
+</section>
+
+<section>
+  <h2>User flow · How</h2>
+  <ol class="flow">
+    <li>{{STEP IN USER'S WORDS}} <div class="screen">Screen: {{SCREEN NAME}}</div></li>
+    <!-- repeat 4–8 steps; give edge/error steps class="edge" -->
+  </ol>
+</section>
+
+<!-- OPTIONAL: key screens. Delete if no screenshots. -->
+<section>
+  <h2>Key screens</h2>
+  <div class="screens">
+    <figure><img src="{{DATA_URI}}" alt="{{SCREEN NAME}}"><figcaption>{{SCREEN NAME}}</figcaption></figure>
+  </div>
+</section>
+
+<section>
+  <h2>Current state → North star</h2>
+  <div class="journey">
+    <div class="stop"><div class="label">Today</div><p>{{CURRENT STATE}}</p></div>
+    <div class="stop now"><div class="label">This release</div><p>{{WHAT THESE DESIGNS SHIP}}</p></div>
+    <div class="stop star"><div class="label">North star ★</div><p>{{VISION}}</p></div>
+  </div>
+</section>
+
+<section class="grid">
+  <div class="card">
+    <h2>Decisions made</h2>
+    <ul><li>{{DECISION}}</li></ul>
+  </div>
+  <div class="card">
+    <h2>Open questions & risks</h2>
+    <ul><li>{{QUESTION OR RISK}}</li></ul>
+  </div>
+</section>
+
+<footer>
+  Generated from {{SOURCE — Figma file / pages covered}}. Items tagged <span class="tag confirm">Confirm</span> are inferred from the designs and need the owner's check.
+</footer>
+
+</main>
+</body>
+</html>
