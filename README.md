@@ -8,6 +8,29 @@ Point Claude at a Figma link (or a few screenshots) and you get back a clean, sh
 
 ---
 
+## Quick start
+
+**1. Share your Figma file.** Paste a Figma link (or drop in screenshots) and ask:
+
+> "Make a project snapshot from this Figma file: `<link>`"
+
+**2. Claude reads the file and fills in the snapshot.** It goes through your pages, frames, sticky notes, annotations and FigJam boards, and fills every section it can: goal, problem, users, type of experience, user flow, and the path from current state to north star.
+
+**3. You fill in the gaps.** Anything the file doesn't show is flagged instead of guessed:
+
+- **Confirm**: Claude's best guess from the designs. Reply "yes" or correct it.
+- **Needs input**: a specific question Claude couldn't answer from the file, like *"How many resubmissions happen per month today?"*
+
+Answer them in one reply, for example:
+
+> "Reviewer role is correct. Admins don't exist in v1. Resubmissions are about 40 a month."
+
+Claude updates the snapshot, and it's ready to share.
+
+**Tip:** Want fewer gaps? Paste your PRD, brief or meeting notes along with the Figma link. You can also skip the file entirely and just describe the project. Claude will build the snapshot from what you tell it.
+
+---
+
 ## Why this exists
 
 Design projects are hard to understand from the outside. The context is scattered across pages, sticky notes, FigJam boards, frame names like `Upload_v3_final_FINAL`, and the designer's head. So PMs, engineers, execs and new teammates either:
